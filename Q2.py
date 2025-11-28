@@ -31,7 +31,10 @@ X_test_scaled = scaler.transform(X_test)
 knn = KNeighborsClassifier(n_neighbors=5)
 knn.fit(X_train, y_train)
 pred_knn = knn.predict(X_test)
-print("KNN Accuracy:", accuracy_score(y_test, pred_knn))
+
+knn_accuracy = accuracy_score(y_test, pred_knn)
+print("KNN Accuracy:", round(knn_accuracy, 4))
+
 joblib.dump(knn, "mnist_knn_model.z")
 print("[INFO] KNN model saved as 'mnist_knn_model.z'")
 
@@ -42,7 +45,9 @@ logreg = LogisticRegression(max_iter=1000)
 logreg.fit(X_train_scaled, y_train)
 
 predictions_logreg = logreg.predict(X_test_scaled)
-print("Logistic Regression Accuracy:", accuracy_score(y_test, predictions_logreg))
+
+logreg_accuracy = accuracy_score(y_test, predictions_logreg)
+print("Logistic Regression Accuracy:", round(logreg_accuracy, 4))
 
 joblib.dump(logreg, "mnist_logreg_model.z")
 print("[INFO] Logistic Regression model saved as 'mnist_logreg_model.z'")
